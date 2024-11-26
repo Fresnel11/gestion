@@ -9,8 +9,18 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $table = 'categories';
+
     protected $fillable = [
         'nom',
         'description',
     ];
+
+    /**
+     * Un produit appartient à une catégorie.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
