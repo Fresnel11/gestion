@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Auth::routes(['verify' => true]); 
 // Route pour l'enrégistrement d'un utilisateur
 Route::post('/register', [AuthController::class, 'register']);
 
@@ -105,4 +107,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Supprimer un client
     Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
 });
+
+// Route de test pour l'email
+Route::get('/test-email', [AuthController::class, 'sendTestEmail']);
 

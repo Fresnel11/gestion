@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
 
 class AuthController extends Controller
 {
@@ -36,6 +38,18 @@ class AuthController extends Controller
             'user' => $user,
         ], 200);
     }
+
+
+    public function sendTestEmail()
+    {
+        Mail::raw('Ceci est un test de l\'envoi d\'un e-mail avec Mailtrap.', function ($message) {
+            $message->to('destinataire@example.com')  // L'adresse du destinataire de test
+                ->subject('Test Email Laravel');
+        });
+
+        return 'E-mail de test envoyé avec succès!';
+    }
+
 
 
 
