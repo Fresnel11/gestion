@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 
 /*
@@ -104,5 +106,41 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Supprimer un client
     Route::delete('/customers/{id}', [CustomerController::class, 'destroy']);
+});
+
+// Routes concernants les factures
+Route::middleware(['auth:sanctum'])->group(function () {
+    // Afficher toutes les factures
+    Route::get('/invoices', [InvoiceController::class, 'index']);
+
+    // Afficher une facture par id
+    Route::get('/invoices/{id}', [InvoiceController::class, 'show']);
+
+    // Ajouter une nouvelle facture
+    Route::post('/invoices', [InvoiceController::class, 'store']);
+
+    // Mettre à jour une facture
+    Route::put('/invoices/{id}', [InvoiceController::class, 'update']);
+
+    // Supprimer une facture
+    Route::delete('/invoices/{id}', [InvoiceController::class, 'destroy']);
+});
+
+// Routes concernants les stocks
+Route::middleware(['auth:sanctum'])->group(function () {
+    // Afficher toutes les factures
+    Route::get('/stocks', [StockController::class, 'index']);
+
+    // Afficher une facture par id
+    Route::get('/stocks/{id}', [StockController::class, 'show']);
+
+    // Ajouter une nouvelle facture
+    Route::post('/stocks', [StockController::class, 'store']);
+
+    // Mettre à jour une facture
+    Route::put('/stocks/{id}', [StockController::class, 'update']);
+
+    // Supprimer une facture
+    Route::delete('/stocks/{id}', [StockController::class, 'destroy']);
 });
 
