@@ -90,7 +90,21 @@ class AuthController extends Controller
     }
 
 
+    public function checkEmail(Request $request)
+    {
+        // Valider que l'email est fourni
+        $request->validate([
+            'email' => 'required|email',
+        ]);
 
+        // Vérifier si l'email existe déjà dans la base de données
+        $emailExists = User::where('email', $request->email)->exists();
+
+        // Retourner la réponse JSON
+        return response()->json([
+            'exists' => $emailExists,
+        ]);
+    }
 
 
 

@@ -144,3 +144,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/stocks/{id}', [StockController::class, 'destroy']);
 });
 
+// Route pour vérifier l'email en tant réel
+
+Route::post('/auth/check-email', [AuthController::class, 'checkEmail']);
+
