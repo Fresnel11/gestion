@@ -146,4 +146,17 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Déconnexion réussie.'], 200);
     }
+
+    public function checkEmail(Request $request)
+    {
+        // Validation de l'email
+        $request->validate([
+            'email' => 'required|email|exists:users,email',  
+        ]);
+
+        // Si l'email existe, renvoyer true, sinon false
+        return response()->json([
+            'exists' => true,
+        ], 200);
+    }
 }

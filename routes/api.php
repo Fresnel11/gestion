@@ -42,13 +42,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Afficher toutes les catégories par id
     Route::middleware('auth:sanctum')->get('/categories/{id}', [CategoryController::class, 'show']);
-    
+
     // Ajouter une catégorie
     Route::post('/categories', [CategoryController::class, 'store']);
-    
+
     // Mettre à jour une catégorie
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
-    
+
     // Supprimer une catégorie
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 });
@@ -68,7 +68,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/products/{id}', [ProductController::class, 'update']);
 
     // Supprimer un produit
-    Route::delete('/products/{id}',  [ProductController::class, 'destroy']);
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
 // Routes concernants les fournisseurs
@@ -144,3 +144,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/stocks/{id}', [StockController::class, 'destroy']);
 });
 
+Route::post('auth/check-email', [AuthController::class, 'checkEmail']);
